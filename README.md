@@ -1,4 +1,26 @@
-# Quick start
+## Airdroppy
+
+A collection of tools to:
+
+- collect your Twitters followers in a single json file
+- process the data of each Twitter user to derive an ENS name from their info
+- resolve their ENS name to an address (requires web3.py)
+
+[extract_eth_name.py](https://github.com/karmacoma-eth/airdroppy/blob/main/src/extract_eth_name.py) tries to look in a few places where people commonly put their ENS name:
+
+- display name
+- @username
+- description
+- location
+- url
+
+It also tries to make a best effort attempt at deriving an ENS name from the display and username, e.g.:
+
+- for a user with display name `Joe Normal`, it will check `JoeNormal.eth`
+- for a user with username `@joejoe`, it will check `joejoe.eth`
+
+
+## Quick start
 
 - `cp .env.example .env`
 - set the BEARER_TOKEN variable in `.env` (get one at developer.twitter.com)
@@ -30,3 +52,4 @@ Count for how many users we failed to resolve an address:
 ```sh
 jq 'map(select(.eth_address == "")) | length' followers_with_eth.json
 ```
+
